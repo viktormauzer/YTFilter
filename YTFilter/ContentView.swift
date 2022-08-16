@@ -11,21 +11,42 @@ struct ContentView: View {
     
     let items: [ImageItem] = ImageItem.mockData()
     
+    var filteredItems: [ImageItem] {
+        var buffer: [ImageItem] = []
+        buffer = items.filter({ $0.category == selectedCategory })
+        return selectedCategory == "All" ? items : buffer
+    }
+    
+    var categories: [String] {
+        var categoryStrings: [String] = []
+        for item in items {
+            if !categoryStrings.contains(where: { $0 == item.category }) {
+                categoryStrings.append(item.category)
+            }
+        }
+        return categoryStrings
+    }
+    
+    @State private var selectedCategory = "All"
+    
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(0..<6, id: \.self) { filterItem in
-                            FilterButtonView(text: "Country name \(filterItem)") {
-                                print(filterItem)
+                        FilterButtonView(text: "All", isSelected: selectedCategory == "All") {
+                            selectedCategory = "All"
+                        }
+                        ForEach(categories, id: \.self) { category in
+                            FilterButtonView(text: category, isSelected: selectedCategory == category) {
+                                selectedCategory = category
                             }
                         }
                     }
                 }
                 .padding(.horizontal)
                 
-                List(items) { item in
+                List(filteredItems) { item in
                     NavigationLink {
                         ImageDetailView(item: item)
                     } label: {

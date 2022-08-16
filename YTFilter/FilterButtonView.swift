@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct FilterButtonView: View {
+    @Environment(\.colorScheme) var colorScheme
+    
+    var buttonTextColor: Color {
+        if colorScheme == .dark {
+            return .black
+        } else {
+            return .white
+        }
+    }
     
     var text: String
+    var isSelected: Bool
     var action: () -> Void
     
     var body: some View {
@@ -19,8 +29,8 @@ struct FilterButtonView: View {
             Text(text)
                 .padding(.horizontal)
                 .padding(.vertical, 6)
-                .background(.tertiary)
-                .foregroundColor(.primary)
+                .background(isSelected ? Color.primary : .gray.opacity(0.2))
+                .foregroundColor(isSelected ? buttonTextColor : .primary)
                 .cornerRadius(30)
                 .overlay(RoundedRectangle(cornerRadius: 30).strokeBorder(.primary, lineWidth: 1))
         }
@@ -30,6 +40,6 @@ struct FilterButtonView: View {
 
 struct FilterButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        FilterButtonView(text: "All", action: {})
+        FilterButtonView(text: "All", isSelected: true, action: {})
     }
 }
