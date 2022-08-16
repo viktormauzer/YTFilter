@@ -13,14 +13,14 @@ struct ContentView: View {
     
     var filteredItems: [ImageItem] {
         var buffer: [ImageItem] = []
-        buffer = items.filter({ $0.category == selectedCategory })
+        buffer = items.filter({ $0.category.lowercased().capitalized == selectedCategory.lowercased().capitalized })
         return selectedCategory == "All" ? items : buffer
     }
     
     var categories: [String] {
         var categoryStrings: [String] = []
         for item in items {
-            if !categoryStrings.contains(where: { $0 == item.category }) {
+            if !categoryStrings.contains(where: { $0.lowercased().capitalized == item.category.lowercased().capitalized }) {
                 categoryStrings.append(item.category)
             }
         }
