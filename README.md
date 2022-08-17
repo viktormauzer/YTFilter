@@ -8,7 +8,7 @@ Clone repo and run in Xcode
 
 ## Details
 
-Currently work in progress. Layout is built, but functionality is to come. The names of the artists who took the photos are shown as "Uploaded by" and other data (views and dates) are from Unsplash where the artists uploaded the photos.
+All categories are added to the selector automatically based on the included data. By tapping on each category, the list shows coresponding data. The names of the artists who took the photos are shown as "Uploaded by" and other data (views and dates) are from Unsplash where the artists uploaded the photos.
 
 ## License
 
