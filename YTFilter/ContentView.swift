@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let items: [ImageItem] = ImageItem.mockData()
+    let items: [ImageItem] = ImageItem.mockData().shuffled()
     
     var filteredItems: [ImageItem] {
         var buffer: [ImageItem] = []
