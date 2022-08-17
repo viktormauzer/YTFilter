@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let items: [ImageItem] = ImageItem.mockData().shuffled()
+    let items: [ImageItem] = ImageItem.mockData()
     
     var filteredItems: [ImageItem] {
         var buffer: [ImageItem] = []
         buffer = items.filter({ $0.category.lowercased().capitalized == selectedCategory.lowercased().capitalized })
-        return selectedCategory == "All" ? items : buffer
+        return selectedCategory == "All" ? items.shuffled() : buffer.shuffled()
     }
     
     var categories: [String] {
@@ -35,11 +35,15 @@ struct ContentView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         FilterButtonView(text: "All", isSelected: selectedCategory == "All") {
-                            selectedCategory = "All"
+                            withAnimation {
+                                selectedCategory = "All"
+                            }
                         }
                         ForEach(categories, id: \.self) { category in
                             FilterButtonView(text: category, isSelected: selectedCategory == category) {
-                                selectedCategory = category
+                                withAnimation() {
+                                    selectedCategory = category
+                                }
                             }
                         }
                     }
@@ -47,11 +51,18 @@ struct ContentView: View {
                 .padding(.horizontal)
                 
                 List(filteredItems) { item in
-                    NavigationLink {
-                        ImageDetailView(item: item)
-                    } label: {
+                    ZStack {
+                        NavigationLink {
+                            ImageDetailView(item: item)
+                        } label: {
+                            // no label
+                        }
+                        .opacity(0)
+                        
                         ImageListItem(item: item)
                     }
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color(UIColor.systemBackground))
                 }
                 .listStyle(.plain)
             }

@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct ImageListItem: View {
+    @State private var isTapped = false
     
     var item: ImageItem
     
     var body: some View {
-        HStack {
+        VStack(alignment: .leading) {
             Image(item.thumbnail)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 160, height: 120)
                 .clipped()
+                .cornerRadius(12)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(item.title)
@@ -27,7 +28,13 @@ struct ImageListItem: View {
                 Text("\(item.uploaded) - \(item.viewCount) views")
                     .font(.caption)
             }
+            .padding(.top, 4)
         }
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(20)
+        .padding(.vertical, 6)
+        .shadow(color: .black.opacity(0.2), radius: 5, x: 0, y: 0)
     }
 }
 

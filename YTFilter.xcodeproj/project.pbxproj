@@ -40,6 +40,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB1BA6DD28AD26BD003BAE3B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DBB093AC28AA791200805249 /* ImageListItem.swift */,
+				DBCCFE6228AAA129008A55F1 /* FilterButtonView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DB1BA6DE28AD26DA003BAE3B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DBB093A828AA71D400805249 /* ImageItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		DB1BA6DF28AD26F3003BAE3B /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				DBB0939C28AA6E4D00805249 /* ContentView.swift */,
+				DBCCFE6028AA9BFB008A55F1 /* ImageDetailView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		DBB0938E28AA6E4D00805249 = {
 			isa = PBXGroup;
 			children = (
@@ -60,13 +86,11 @@
 			isa = PBXGroup;
 			children = (
 				DBB0939A28AA6E4D00805249 /* YTFilterApp.swift */,
-				DBB0939C28AA6E4D00805249 /* ContentView.swift */,
+				DB1BA6DE28AD26DA003BAE3B /* Model */,
+				DB1BA6DD28AD26BD003BAE3B /* Views */,
+				DB1BA6DF28AD26F3003BAE3B /* Screens */,
 				DBB0939E28AA6E5000805249 /* Assets.xcassets */,
 				DBB093A028AA6E5000805249 /* Preview Content */,
-				DBB093A828AA71D400805249 /* ImageItem.swift */,
-				DBB093AC28AA791200805249 /* ImageListItem.swift */,
-				DBCCFE6028AA9BFB008A55F1 /* ImageDetailView.swift */,
-				DBCCFE6228AAA129008A55F1 /* FilterButtonView.swift */,
 			);
 			path = YTFilter;
 			sourceTree = "<group>";
