@@ -29,7 +29,10 @@ struct ImageDetailView: View {
                 Spacer()
             }
             .navigationTitle("By: \(item.uploaderName)")
-        .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear {
+            mapRegion.center = item.location
         }
     }
     
@@ -52,10 +55,12 @@ struct ImageDetailView: View {
                 .frame(height: 1)
                 .foregroundColor(.secondary)
             
-            Map(coordinateRegion: $mapRegion)
-                .padding(.top, 12)
-                .frame(height: 220)
-                .cornerRadius(10)
+            Map(coordinateRegion: $mapRegion, annotationItems: [item]) { location in
+                MapMarker(coordinate: item.location)
+            }
+            .padding(.top, 12)
+            .frame(height: 220)
+            .cornerRadius(10)
         }
         .padding()
         .background(Color(UIColor.secondarySystemBackground))
